@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+    <meta name="description" content="personal blog" />
+    <meta name="author" content="YerkoPalma" />
+    <meta name="theme-color" content="#111111">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="manifest" href="manifest.json">
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="blog">
+    <link rel="apple-touch-icon" href="assets/icons/icon-152.png">
+    <!-- Add Tile Icon for Windows -->
+    <meta name="msapplication-TileImage" content="assets/icons/icon-144.png">
+    <meta name="msapplication-TileColor" content="#111111">
+    <link rel="preload" as="style" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" onload="this.rel='stylesheet'"/>
+    <link rel="preload" as="style" href="style.css" onload="this.rel='stylesheet'"/>
+    <link rel="modulepreload" href="components/app-shell.js">
+    <link rel="modulepreload" href="index.js">
+  </head>
+  <body class="bg-light-purple">
+    <noscript>Please enable JavaScript.</noscript>
+    <aside class="absolute vh-100 bg-white w-20" id="nav">
+      <ul class="list pa0">
+        <li><a class="link black w-100 bg-animate db pa3 sans-serif hover-bg-near-white" href="content/foo.html">Html view</a></li>
+        <li><a class="link black w-100 bg-animate db pa3 sans-serif hover-bg-near-white" href="content/bar.md">Markdown view</a></li>
+        <li><a class="link black w-100 bg-animate db pa3 sans-serif hover-bg-near-white" href="fake">Fake view</a></li>
+      </ul>
+    </aside>
+    <main>
+      <app-shell class="db fr w-80 vh-100" controller="#nav" default="content/foo.html"></app-shell>
+    </main>
+    <script type="module" async src="index.js"></script>
+  </body>
+</html>
