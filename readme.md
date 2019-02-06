@@ -3,5 +3,13 @@
 
 > web compass
 
+## TODO
+
+- [ ] Use mapbox to display map
+- [ ] Set destinations
+- [ ] Use turf to get [bearing][bearing]
+
 ## License
 [MIT](/license)
+
+[bearing]: http://turfjs.org/docs/#bearing

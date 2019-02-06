@@ -23,18 +23,49 @@
     <link rel="modulepreload" href="components/app-shell.js">
     <link rel="modulepreload" href="index.js">
   </head>
-  <body class="bg-light-purple">
+  <body class="bg-dark-gray">
     <noscript>Please enable JavaScript.</noscript>
-    <aside class="absolute vh-100 bg-white w-20" id="nav">
-      <ul class="list pa0">
-        <li><a class="link black w-100 bg-animate db pa3 sans-serif hover-bg-near-white" href="content/foo.html">Html view</a></li>
-        <li><a class="link black w-100 bg-animate db pa3 sans-serif hover-bg-near-white" href="content/bar.md">Markdown view</a></li>
-        <li><a class="link black w-100 bg-animate db pa3 sans-serif hover-bg-near-white" href="fake">Fake view</a></li>
-      </ul>
-    </aside>
-    <main>
-      <app-shell class="db fr w-80 vh-100" controller="#nav" default="content/foo.html"></app-shell>
-    </main>
+
+    <div class="container">
+      <div class="compass">
+        <div id="rose" class="compass__rose">
+          <svg class="compass__rose__dial" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">  
+            <circle cx="65" cy="65" r="56" stroke="white" stroke-width="1" fill="none" />
+            <polyline points="63,9  67,9  65,13" fill="white"/>
+            <polyline points="121,63  121,67  119,65" fill="white"/>
+            <polyline points="63,121  67,121  65,119" fill="white"/>
+            <polyline points="9,63  9,67  11,65" fill="white"/>
+            <text x="65" y="4.2" font-size="5" text-anchor="middle" fill="white">N</text>
+            <text x="127" y="67" font-size="5" text-anchor="middle" fill="white">E</text>
+            <text x="65" y="129" font-size="5" text-anchor="middle" fill="white">S</text>
+            <text x="2.8" y="67" font-size="5" text-anchor="middle" fill="white">W</text>  
+          </svg>
+        </div>
+
+        <svg class="compass__pointer" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="60,60  70,60  65,15" fill="#b60000"/>
+          <polyline points="60,70  70,70  65,115" fill="white"/>
+          <circle cx="65" cy="65" r="7" stroke="#b60000" stroke-width="7" fill="none" />
+        </svg>
+      </div>
+    </div>
+
+    <div class='status'>
+      <div class='position row'>
+        <div class='column-33'>
+          <div class='label'>HDG</div>
+          <div id='position-hng'>n/a</div>
+        </div
+        ><div class='column-33'>
+          <div class='label'>Lat</div>
+          <div id='position-lat'>&#8943;</div>
+        </div
+        ><div class='column-33'>
+          <div class='label'>Lng</div>
+          <div id='position-lng'>&#8943;</div>
+        </div>
+      </div>
+    </div>
     <script type="module" async src="index.js"></script>
   </body>
 </html>
