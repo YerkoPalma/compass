@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', e => {
     }
 
     const orientation = getBrowserOrientation()
-
+    alert(`heading: ${heading} orientation: ${orientation}`)
     if (typeof heading !== 'undefined' && heading !== null) { // && typeof orientation !== 'undefined') {
       // we have a browser that reports device heading and orientation
       // what adjustment we have to add to rotation to allow for current device orientation
