@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', e => {
+(function () {
+  'use strict'
+
   let positionCurrent = {
     lat: null,
     lng: null,
@@ -56,16 +58,16 @@ document.addEventListener('DOMContentLoaded', e => {
       positionHng.textContent = 'n/a'
     }
   })
-})
 
-function getBrowserOrientation () {
-  let orientation
-  if (screen.orientation && screen.orientation.type) {
-    orientation = screen.orientation.type
-  } else {
-    orientation = screen.orientation ||
-                  screen.mozOrientation ||
-                  screen.msOrientation
+  function getBrowserOrientation () {
+    let orientation
+    if (screen.orientation && screen.orientation.type) {
+      orientation = screen.orientation.type
+    } else {
+      orientation = screen.orientation ||
+                    screen.mozOrientation ||
+                    screen.msOrientation
+    }
+    return orientation
   }
-  return orientation
-}
+})()
