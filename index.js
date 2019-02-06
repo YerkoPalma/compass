@@ -7,6 +7,7 @@
     hng: null
   }
   let positionHng = document.getElementById("position-hng")
+  let positionLat = document.getElementById("position-lat")
   let rose = document.getElementById("rose")
 
   window.addEventListener('deviceorientation', event => {
@@ -17,7 +18,7 @@
     }
 
     const orientation = getBrowserOrientation()
-    positionHng.textContent = heading
+    positionLat.textContent = heading
     if (typeof heading !== 'undefined' && heading !== null) { // && typeof orientation !== 'undefined') {
       // we have a browser that reports device heading and orientation
       // what adjustment we have to add to rotation to allow for current device orientation
