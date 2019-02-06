@@ -18,7 +18,7 @@
     }
 
     const orientation = getBrowserOrientation()
-    positionLat.textContent = heading
+
     if (typeof heading !== 'undefined' && heading !== null) { // && typeof orientation !== 'undefined') {
       // we have a browser that reports device heading and orientation
       // what adjustment we have to add to rotation to allow for current device orientation
@@ -48,6 +48,7 @@
       const phase = positionCurrent.hng < 0 ? 360 + positionCurrent.hng : positionCurrent.hng
       positionHng.textContent = (360 - phase | 0) + '°'
 
+      positionLat.textContent = positionCurrent.hng
       // apply rotation to compass rose
       if (typeof rose.style.transform !== 'undefined') {
         rose.style.transform = 'rotateZ(' + positionCurrent.hng + 'deg)'
