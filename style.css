@@ -187,10 +187,6 @@ header {
   text-align: center;
 }
 
-.options {
-
-}
-
   .options__btn {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -226,10 +222,6 @@ header {
     .popup__contents {
       padding: 1rem;
     }
-
-      .popup__inner {
-
-      }
 
         .popup__inner--hide {
           display: none;
