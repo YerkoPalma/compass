@@ -1,15 +1,35 @@
+@font-face {
+  font-family: Muli;
+  src: url("assets/fonts/Muli-Light.ttf");
+}
+
+
+
+
 * {
   box-sizing: border-box;
 }
+
+h1, h2, h3, h4 {
+  font-family: Muli, serif;
+}
+
+h1 {
+  font-size: 1.2rem;
+  padding-left: 1.7rem;
+  background: transparent url(assets/images/logo.png) 0% 50% no-repeat;
+  background-size: 1.2rem;
+}
+
 
 html {
   font-family: Muli, sans-serif;
   font-size: 16px;
   background-color: white;
   color: white;
-  background-size: cover;
   height: 100%;
 }
+
 
 [class^="column-"] {
   display: inline-block;
@@ -27,11 +47,16 @@ html {
     font-size: 0.5rem;
   }
 
+
 body {
   padding: 0;
   margin: 0;
   height: 100%;
 }
+
+
+
+
 
 header {
   padding: 0.5rem;
@@ -40,7 +65,14 @@ header {
   top: 0;
   right: 0;
   left: 0;
+
+  transition: -webkit-transform 0.5s ease-out 0s;
+  transition: transform 0.5s ease-out 0s;
 }
+
+
+
+
 
 .container {
   padding: 5rem 1rem 8rem 1rem;
@@ -50,6 +82,10 @@ header {
   transition: -webkit-transform 0.5s ease-out 0s;
   transition: transform 0.5s ease-out 0s;
 }
+
+
+
+
 
 .compass {
   position: relative;
@@ -64,8 +100,6 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    transition: -webkit-transform 0.5s ease-out 0s;
-    transition: transform 0.5s ease-out 0s;
   }
 
     .compass__rose__dial {
@@ -77,6 +111,10 @@ header {
     height: 100%;
     width: 100%;
   }
+
+
+
+
 
 .btn {
   border: 0;
@@ -132,6 +170,10 @@ header {
     display: none;
   }
 
+
+
+
+
 .status {
   position: fixed;
   left: 0;
@@ -143,12 +185,19 @@ header {
   padding-bottom: 0.5rem;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 2rem;
+}
+
+.options {
+
 }
 
   .options__btn {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
+
+
+
+
 
 .popup {
   display: none;
@@ -200,6 +249,8 @@ header {
         text-decoration: underline;
         cursor: pointer;
       }
+
+
 
 html.nightmode {
   background: black;
