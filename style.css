@@ -191,59 +191,6 @@ header {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-
-
-
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.popup.popup--show {
-  display: block;
-}
-
-  .popup__content {
-    max-width: 300px;
-    margin: 0 auto;
-
-
-    background-color: white;
-    color: black;
-  }
-
-    .popup__contents {
-      padding: 1rem;
-    }
-
-        .popup__inner--hide {
-          display: none;
-        }
-
-    .popup__close {
-      display: block;
-      padding: 1rem;
-      text-align: right;
-      width: 100%;
-      border: 0;
-      background: transparent;
-      outline: none;
-    }
-
-      .popup__close:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-
-
-
 html.nightmode {
   background: black;
   color: white;
