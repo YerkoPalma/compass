@@ -1,0 +1,31 @@
+{
+  "name": "compass",
+  "version": "1.0.0",
+  "description": "web compass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [ "@pika/plugin-standard-pkg" ],
+      [ "@pika/plugin-build-web" ]
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YerkoPalma/compass.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YerkoPalma/compass/issues"
+  },
+  "homepage": "https://compass.yerkopalma.me",
+  "devDependencies": {
+    "@pika/plugin-build-web": "^0.3.9",
+    "@pika/plugin-bundle-web": "^0.3.9",
+    "@pika/plugin-standard-pkg": "^0.3.9"
+  }
+}
