@@ -3,9 +3,6 @@
   src: url("assets/fonts/Muli-Light.ttf");
 }
 
-
-
-
 * {
   box-sizing: border-box;
 }
@@ -32,7 +29,7 @@ html {
 
 
 [class^="column-"] {
-  display: inline-block;
+  float: left;
 }
 
   .column-33 {
@@ -52,6 +49,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
+  background-color: #777777;
 }
 
 
@@ -71,50 +69,19 @@ header {
 }
 
 
-
+.row {
+  padding-top: 1.5rem;
+}
 
 
 .container {
-  padding: 5rem 1rem 8rem 1rem;
+  padding: 5rem 0 8rem 0;
   overflow: hidden;
 
   height: 100%;
   transition: -webkit-transform 0.5s ease-out 0s;
   transition: transform 0.5s ease-out 0s;
 }
-
-
-
-
-
-.compass {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-  .compass__rose {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-    .compass__rose__dial {
-      height: 100%;
-      width: 100%;
-    }
-
-  .compass__pointer {
-    height: 100%;
-    width: 100%;
-  }
-
-
-
-
 
 .btn {
   border: 0;
@@ -171,9 +138,6 @@ header {
   }
 
 
-
-
-
 .status {
   position: fixed;
   left: 0;
@@ -181,11 +145,7 @@ header {
   bottom: 0;
 }
 
-.position {
-  padding-bottom: 0.5rem;
-  text-transform: uppercase;
-  text-align: center;
-}
+
 
   .options__btn {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
