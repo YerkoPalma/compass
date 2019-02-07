@@ -1,4 +1,6 @@
 /* global screen */
+import { popup } from './lib/utils.js'
+
 (function () {
   'use strict'
 
@@ -25,9 +27,6 @@
   var debugOrientationDefault = document.getElementById('debug-orientation-default')
 
   // info popup elements, pus buttons that open popups
-  var popup = document.getElementById('popup')
-  var popupContents = document.getElementById('popup-contents')
-  var popupInners = document.querySelectorAll('.popup__inner')
   var btnsPopup = document.querySelectorAll('.btn-popup')
 
   // buttons at the bottom of the screen
@@ -192,7 +191,9 @@
 
   function showHeadingWarning () {
     if (!warningHeadingShown) {
-      popupOpen('noorientation')
+      popup(`<p>
+      Unfortunately this browser doesn't support orientation so will not show your correct heading.
+    </p>`)
       warningHeadingShown = true
     }
   }
@@ -320,28 +321,6 @@
     window.open('https://www.google.com/maps/place/@' + positionCurrent.lat + ',' + positionCurrent.lng + ',16z', '_blank')
   }
 
-  function popupOpenFromClick (event) {
-    popupOpen(event.currentTarget.dataset.name)
-  }
-
-  function popupOpen (name) {
-    var i
-    for (i = 0; i < popupInners.length; i++) {
-      popupInners[i].classList.add('popup__inner--hide')
-    }
-    document.getElementById('popup-inner-' + name).classList.remove('popup__inner--hide')
-
-    popup.classList.add('popup--show')
-  }
-
-  function popupClose () {
-    popup.classList.remove('popup--show')
-  }
-
-  function popupContentsClick (event) {
-    event.stopPropagation()
-  }
-
   function decimalToSexagesimal (decimal, type) {
     var degrees = decimal | 0
     var fraction = Math.abs(decimal - degrees)
@@ -385,11 +364,13 @@
 
   var i
   for (i = 0; i < btnsPopup.length; i++) {
-    btnsPopup[i].addEventListener('click', popupOpenFromClick)
+    btnsPopup[i].addEventListener('click', e => popup(`<p>
+    For best results calibrate the accelerometer in your device by tracing out a figure of 8 in the air several times vertically and horizontally. The heading can also be affected by nearby magnetic fields.
+    </p>
+    <p>
+    For more information, bugs or comments please visit <a href='https://github.com/lamplightdev/compass'>the repo on github</a>.
+    </p>`))
   }
-
-  popup.addEventListener('click', popupClose)
-  popupContents.addEventListener('click', popupContentsClick)
 
   navigator.geolocation.watchPosition(locationUpdate, locationUpdateFail, {
     enableHighAccuracy: false,

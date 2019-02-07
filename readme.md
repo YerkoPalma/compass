@@ -5,9 +5,11 @@
 
 ## TODO
 
+- [ ] Use AppShell and modules
 - [ ] Use mapbox to display map
 - [ ] Set destinations
 - [ ] Use turf to get [bearing][bearing]
+- [ ] Make it a PWA
 
 ## License
 [MIT](/license)
