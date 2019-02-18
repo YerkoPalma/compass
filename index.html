@@ -22,6 +22,7 @@
   <link rel="preload" as="style" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" onload="this.rel='stylesheet'" />
   <link rel="preload" as="style" href="style.css" onload="this.rel='stylesheet'" />
   <link rel="modulepreload" href="components/app-shell.js">
+  <link rel="modulepreload" href="components/web-compass.js">
   <link rel="modulepreload" href="index.js">
 </head>
 
@@ -116,8 +117,8 @@
       </button></div>
 
   </div>
-  <!--<script type="module" async src="index.js"></script>-->
-  <script src="bundle.js"></script>
+  <script type="module" async src="index.js"></script>
+  <script nomodule async src="bundle.js"></script>
 </body>
 
 </html>
