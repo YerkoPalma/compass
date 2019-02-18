@@ -4,3 +4,4 @@ npm-debug.log*
 .nyc_output
 *.log
 bundle.js
+package-lock.json
