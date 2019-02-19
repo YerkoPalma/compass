@@ -3,8 +3,15 @@
 set -e
 
 # build
-npm run build && \
-REMOTE_REPO="https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git" && \
+echo "Installing ..."
+npm install 
+
+echo "Building ..."
+npm run build 
+
+REMOTE_REPO="https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git"
+
+echo " Creating repo and pushing"
 git init && \
 git config user.name "${GITHUB_ACTOR}" && \
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com" && \
