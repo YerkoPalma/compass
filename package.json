@@ -18,7 +18,9 @@
     "aliasify": "^2.1.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babelify": "^10.0.0",
-    "browserify": "^16.2.3"
+    "browserify": "^16.2.3",
+    "gh-pages": "^2.0.1",
+    "tinyify": "^2.5.0"
   },
   "scripts": {
     "build": "node build.js"
