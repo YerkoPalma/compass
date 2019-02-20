@@ -23,7 +23,8 @@
     "tinyify": "^2.5.0"
   },
   "scripts": {
-    "build": "node build.js"
+    "build": "node scripts/build.js",
+    "publish": "npm run build && node scripts/publish.js"
   },
   "repository": {
     "type": "git",
