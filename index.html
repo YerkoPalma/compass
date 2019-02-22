@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -28,19 +28,18 @@
 
 <body class="bg-dark-gray">
   <noscript>Please enable JavaScript.</noscript>
-
   <header>
     <h1>Compass</h1>
   </header>
   <div class="container">
-    <web-compass></web-compass>
+    <app-shell controller=".status">
+        <web-compass></web-compass>
+    </app-shell>
   </div>
 
   <div class='status'>
     <div class="options row">
-
       <button id="btn-lock-orientation" class="btn btn--hide options__btn column-25" type="button">
-
         <svg alt="lock off" class="btn__icon btn__icon--inactive" version="1.1" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512"
           enable-background="new 0 0 512 512" xml:space="preserve">
@@ -62,9 +61,8 @@
             s-30.575,13.717-30.575,30.576v31.585H201.225z M182.409,242.656v105.169h149.182V242.656H182.409z"
             fill="white" />
         </svg>
-
-      </button><button id="btn-nightmode" class="btn options__btn column-33" type="button">
-
+      </button>
+      <button id="btn-nightmode" class="btn options__btn column-33" type="button">
         <svg lock="nightmode off" class="btn__icon btn__icon--inactive" version="1.1" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512"
           enable-background="new 0 0 512 512" xml:space="preserve">
@@ -86,9 +84,8 @@
           xml:space="preserve">
           <circle cx="256" cy="256" r="206" fill="white" />
         </svg>
-
-      </button><button id="btn-map" class="btn options__btn column-33" type="button">
-
+      </button>
+      <button id="btn-map" class="btn options__btn column-33" type="button">
         <svg alt="map" class="btn__icon btn__icon--inactive" version="1.1" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512"
           enable-background="new 0 0 512 512" xml:space="preserve">
@@ -97,9 +94,8 @@
             s20.953-46.8,46.801-46.8s46.801,20.953,46.801,46.8S281.848,224.133,256,224.133z"
             fill="white" />
         </svg>
-
-      </button><button id="btn-info" class="btn btn-popup options__btn column-33" type="button" data-name='info'>
-
+      </button>
+      <button id="btn-info" class="btn btn-popup options__btn column-33" type="button" data-name='info'>
         <svg alt="info" class="btn__icon btn__icon--inactive" version="1.1" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512"
           enable-background="new 0 0 512 512" xml:space="preserve">
@@ -111,14 +107,11 @@
             c-17.522,0-31.729-14.206-31.729-31.73c0-17.522,14.206-31.729,31.729-31.729c17.524,0,31.728,14.206,31.728,31.729
             C288.728,188.062,274.524,202.268,257,202.268z"
             fill="white" />
-
         </svg>
-
-      </button></div>
-
+      </button>
+    </div>
   </div>
   <script type="module" async src="index.js"></script>
   <script nomodule async src="bundle.js"></script>
 </body>
-
 </html>
