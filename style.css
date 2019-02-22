@@ -33,7 +33,7 @@ html {
 }
 
   .column-33 {
-    width: 33.33333%;
+    width: 33%;
   }
 
   .column-25 {
@@ -67,6 +67,7 @@ header {
 
 .row {
   padding-top: 1.5rem;
+  display: flex;
 }
 
 
@@ -168,4 +169,15 @@ html.nightmode {
 
   html.nightmode .btn svg * {
     fill: rgba(127, 127, 127, 0.5);
+  }
+
+  app-shell {
+    height: 100%;
+    position: relative;
+    display: flex;
+  }
+  web-compass {
+    height: 100%;
+    width: 100%;
+    position: absolute;
   }

@@ -1,4 +1,4 @@
-/* global fetch */
+/* global customElements fetch */
 import markdown from 'https://unpkg.com/md?module'
 import { LitElement, html } from 'https://unpkg.com/@polymer/lit-element?module'
 
@@ -11,18 +11,22 @@ export default class AppShell extends LitElement {
       default: {
         type: String
       },
-      current: {
+      content: {
         type: Object
       }
     }
+  }
+  constructor () {
+    super()
+    this.content = html`<div><slot></slot></div>`
   }
   firstUpdated (changedProperties) {
     for (let key of changedProperties.keys()) {
       if (key === 'default') {
         if (this.default) {
-          this.fetchTemplate(this.default).then(result => { this.current = result })
+          this.fetchTemplate(this.default).then(result => { this.content = result })
         } else {
-          this.current = html`<div></div>`
+          this.content = html`<div></div>`
         }
       }
     }
@@ -36,7 +40,7 @@ export default class AppShell extends LitElement {
           link.addEventListener('click', async e => {
             e.preventDefault()
             const target = e.target.href
-            this.current = await this.fetchTemplate(target)
+            this.content = await this.fetchTemplate(target)
             window.history.pushState({}, null, target)
           })
         })
@@ -44,7 +48,7 @@ export default class AppShell extends LitElement {
     }
   }
   render () {
-    return this.current
+    return this.content
   }
   async fetchTemplate (template) {
     const NOT_FOUND_URL = 'content/404.html'
@@ -81,3 +85,4 @@ export default class AppShell extends LitElement {
     return isMarkdown ? mdTemplate(result) : html([result])
   }
 }
+customElements.define('app-shell', AppShell)

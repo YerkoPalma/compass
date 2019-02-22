@@ -1,16 +1,10 @@
 /* global screen */
 import { popup, getBrowserOrientation } from './lib/utils.js'
 import './components/web-compass.js'
+import './components/app-shell.js'
 
 (function () {
   'use strict'
-
-  // our current position
-  var positionCurrent = {
-    lat: null,
-    lng: null,
-    hng: null
-  }
 
   // info popup elements, pus buttons that open popups
   var btnsPopup = document.querySelectorAll('.btn-popup')
@@ -184,7 +178,14 @@ import './components/web-compass.js'
   }
 
   function openMap () {
-    window.open('https://www.google.com/maps/place/@' + positionCurrent.lat + ',' + positionCurrent.lng + ',16z', '_blank')
+    navigator.geolocation.watchPosition(({ coords }) => {
+      this.lat = coords.latitude
+      this.lng = coords.longitude
+    }, err => console.error(err), {
+      enableHighAccuracy: false,
+      maximumAge: 30000,
+      timeout: 27000
+    })
   }
 
   document.addEventListener('fullscreenchange', onFullscreenChange)

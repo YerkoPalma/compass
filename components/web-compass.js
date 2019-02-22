@@ -29,14 +29,6 @@ export default class WebCompass extends LitElement {
     } else {
       this.defaultOrientation = 'portrait'
     }
-    navigator.geolocation.watchPosition(({ coords }) => {
-      this.lat = coords.latitude
-      this.lng = coords.longitude
-    }, err => console.error(err), {
-      enableHighAccuracy: false,
-      maximumAge: 30000,
-      timeout: 27000
-    })
 
     window.addEventListener('deviceorientation', event => {
       var heading = event.alpha
@@ -89,6 +81,16 @@ export default class WebCompass extends LitElement {
       this.warningHeadingShown = true
     }
   }
+  watchPosition () {
+    navigator.geolocation.watchPosition(({ coords }) => {
+      this.lat = coords.latitude
+      this.lng = coords.longitude
+    }, err => console.error(err), {
+      enableHighAccuracy: false,
+      maximumAge: 30000,
+      timeout: 27000
+    })
+  }
   render () {
     return html`
     <style>
@@ -97,7 +99,7 @@ export default class WebCompass extends LitElement {
     }
     
       :host .column-33 {
-        width: 33.33333%;
+        width: 33%;
       }
     
       :host .column-25 {
