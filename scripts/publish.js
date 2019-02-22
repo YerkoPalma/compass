@@ -2,7 +2,7 @@ const { publish } = require('gh-pages')
 
 publish('.', {
   src: [
-    'assets/*',
+    'assets/**/*',
     'components/*',
     'content/*',
     'lib/*',
