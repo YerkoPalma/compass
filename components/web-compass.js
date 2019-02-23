@@ -151,10 +151,10 @@ export default class WebCompass extends LitElement {
         <polyline points="63,121  67,121  65,119" fill="white" />
         <polyline points="9,63  9,67  11,65" fill="white" />
 
-        <text x="65" y="4.2" font-size="5" text-anchor="middle" fill="white">N</text>
-        <text x="127" y="67" font-size="5" text-anchor="middle" fill="white">E</text>
-        <text x="65" y="129" font-size="5" text-anchor="middle" fill="white">S</text>
-        <text x="2.8" y="67" font-size="5" text-anchor="middle" fill="white">W</text>
+        <text x="65" y="4.2" font-size="5" text-anchor="middle" fill="white">S</text>
+        <text x="127" y="67" font-size="5" text-anchor="middle" fill="white">W</text>
+        <text x="65" y="129" font-size="5" text-anchor="middle" fill="white">N</text>
+        <text x="2.8" y="67" font-size="5" text-anchor="middle" fill="white">E</text>
 
       </svg>
 
