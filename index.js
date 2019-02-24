@@ -1,5 +1,4 @@
 /* global screen */
-import { html } from 'https://unpkg.com/@polymer/lit-element?module'
 import { popup, getBrowserOrientation } from './lib/utils.js'
 import './components/web-compass.js'
 import './components/app-shell.js'
@@ -186,10 +185,18 @@ import './components/web-map.js'
     // add next element, hidded
     if (document.querySelector('web-compass')) {
       container.innerHTML = ''
-      container.appendChild(document.createElement('web-map'))
+      const map = document.createElement('web-map')
+      navigator.geolocation.getCurrentPosition(({ coords }) => {
+        const { latitude, longitude } = coords
+        map.lng = longitude
+        map.lat = latitude
+        container.appendChild(map)
+      })
     } else {
       container.innerHTML = ''
-      container.appendChild(document.createElement('web-compass'))
+      const compass = document.createElement('web-compass')
+      container.appendChild(compass)
+      compass.watchPosition()
     }
 
     // show new element

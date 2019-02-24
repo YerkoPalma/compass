@@ -21,7 +21,9 @@ export default class WebMap extends LitElement {
     mapboxgl.accessToken = 'pk.eyJ1IjoieWVya29wYWxtYSIsImEiOiJjaXRrMzJyaTMwOXN2MnRta3kxdWl3eTJlIn0.Uksl2kszTnSQW3PFAMYTJg'
     var map = new mapboxgl.Map({ // eslint-disable-line
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11'
+      style: 'mapbox://styles/mapbox/streets-v11',
+      zoom: 13,
+      center: [ this.lng, this.lat ]
     })
   }
   render () {
