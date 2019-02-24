@@ -16,6 +16,10 @@ export default class AppShell extends LitElement {
       }
     }
   }
+
+  /**
+   * Creates a new instance with content equal to innerHTML value
+   */
   constructor () {
     super()
     this.content = html`<div><slot></slot></div>`

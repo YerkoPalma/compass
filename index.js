@@ -1,7 +1,9 @@
 /* global screen */
+import { html } from 'https://unpkg.com/@polymer/lit-element?module'
 import { popup, getBrowserOrientation } from './lib/utils.js'
 import './components/web-compass.js'
 import './components/app-shell.js'
+import './components/web-map.js'
 
 (function () {
   'use strict'
@@ -177,15 +179,20 @@ import './components/app-shell.js'
     setNightmode(!isNightMode)
   }
 
-  function openMap () {
-    navigator.geolocation.watchPosition(({ coords }) => {
-      this.lat = coords.latitude
-      this.lng = coords.longitude
-    }, err => console.error(err), {
-      enableHighAccuracy: false,
-      maximumAge: 30000,
-      timeout: 27000
-    })
+  function toggleMap () {
+    const container = document.querySelector('#appShell')
+    // hide current content
+
+    // add next element, hidded
+    if (document.querySelector('web-compass')) {
+      container.innerHTML = ''
+      container.appendChild(document.createElement('web-map'))
+    } else {
+      container.innerHTML = ''
+      container.appendChild(document.createElement('web-compass'))
+    }
+
+    // show new element
   }
 
   document.addEventListener('fullscreenchange', onFullscreenChange)
@@ -195,7 +202,7 @@ import './components/app-shell.js'
 
   btnLockOrientation.addEventListener('click', toggleOrientationLock)
   btnNightmode.addEventListener('click', toggleNightmode)
-  btnMap.addEventListener('click', openMap)
+  btnMap.addEventListener('click', toggleMap)
 
   var i
   for (i = 0; i < btnsPopup.length; i++) {
