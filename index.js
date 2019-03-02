@@ -1,4 +1,4 @@
-/* global screen */
+/* global screen nativeToast */
 import { popup, getBrowserOrientation } from './lib/utils.js'
 import './components/web-compass.js'
 import './components/app-shell.js'
@@ -180,26 +180,39 @@ import './components/web-map.js'
 
   function toggleMap () {
     const container = document.querySelector('#appShell')
-    // hide current content
+    const compass = document.querySelector('web-compass')
 
     // add next element, hidded
-    if (document.querySelector('web-compass')) {
-      container.innerHTML = ''
-      const map = document.createElement('web-map')
-      navigator.geolocation.getCurrentPosition(({ coords }) => {
-        const { latitude, longitude } = coords
-        map.lng = longitude
-        map.lat = latitude
+    if (compass) {
+      let map = document.createElement('web-map')
+      if (compass.lat && compass.lng) {
+        map.lng = compass.lng
+        map.lat = compass.lat
+        container.innerHTML = ''
         container.appendChild(map)
-      }, console.log, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
+      } else {
+        navigator.geolocation.getCurrentPosition(({ coords }) => {
+          const { latitude, longitude } = coords
+          map.lng = longitude
+          map.lat = latitude
+          container.innerHTML = ''
+          container.appendChild(map)
+        }, (e) => {
+          nativeToast({
+            message: `Error: ${e.message}`,
+            position: 'north',
+            // Self destroy in 5 seconds
+            timeout: 5000,
+            type: 'error'
+          })
+        }, { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 })
+      }
     } else {
       container.innerHTML = ''
       const compass = document.createElement('web-compass')
       container.appendChild(compass)
-      compass.watchPosition()
+      compass.watchPosition(window.marker)
     }
-
-    // show new element
   }
 
   document.addEventListener('fullscreenchange', onFullscreenChange)

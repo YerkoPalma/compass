@@ -1,4 +1,4 @@
-/* global customElements */
+/* global customElements turf nativeToast */
 import { LitElement, html } from 'https://unpkg.com/@polymer/lit-element?module'
 import { getBrowserOrientation, popup, decimalToSexagesimal } from '../lib/utils.js'
 
@@ -19,10 +19,17 @@ export default class WebCompass extends LitElement {
       },
       lng: {
         type: Number
+      },
+      targetSvg: {
+        type: Object
       }
     }
   }
 
+  constructor () {
+    super()
+    this.targetSvg = ''
+  }
   firstUpdated () {
     if (window.screen.width > window.screen.height) {
       this.defaultOrientation = 'landscape'
@@ -69,7 +76,7 @@ export default class WebCompass extends LitElement {
         this.phase = this.hng < 0 ? 360 + this.hng : this.hng
       } else {
         // device can't show heading
-        this.showHeadingWarning()
+        // this.showHeadingWarning()
       }
     })
   }
@@ -81,15 +88,65 @@ export default class WebCompass extends LitElement {
       this.warningHeadingShown = true
     }
   }
-  watchPosition () {
+  watchPosition (marker) {
     navigator.geolocation.watchPosition(({ coords }) => {
       this.lat = coords.latitude
       this.lng = coords.longitude
-    }, err => console.error(err), {
-      enableHighAccuracy: false,
-      maximumAge: 30000,
-      timeout: 27000
+      if (marker) {
+        const { lng, lat } = marker.getLngLat()
+        const target = turf.point([lng, lat])
+        const current = turf.point([this.lng, this.lat])
+
+        // bearing comes between -180 and 180, so convert to [0, 360]
+        const bearing = turf.bearing(current, target) + 180
+        const radius = 56
+        const center = { x: 65, y: 65 }
+        const { x, y } = this.getTargetPosition(bearing, radius, center)
+        this.targetSvg = html`<svg x="${x}" y="${y}" version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 12 17" width="12" height="17"><defs><path d="M0.64 6.44C0.64 11.28 6 16 6 16C6 16 11.36 11.19 11.36 6.44C11.36 3.44 8.97 1 6 1C3.03 1 0.64 3.44 0.64 6.44Z" id="a3B3BcdNT"/></defs><g><g><use xlink:href="#a3B3BcdNT" opacity="1" fill="#edd80b" fill-opacity="1"/><g><use xlink:href="#a3B3BcdNT" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1" stroke-opacity="0"/></g></g></g></svg>`
+      }
+    }, (e) => {
+      nativeToast({
+        message: `Error: ${e.message}`,
+        position: 'north',
+        // Self destroy in 5 seconds
+        timeout: 5000,
+        type: 'error'
+      })
+    }, {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
     })
+  }
+
+  getTargetPosition (bearing, radius, center) {
+    // since Math.tan expect radians, but bearing is in degrees, convert it
+    // we know that m = tan(angle), because
+    //  angle = tan^-1(m)
+    let m = Math.tan(bearing * Math.PI / 180)
+    console.log(`m = ${m}`)
+    console.log(`bearing = ${bearing}`)
+    // we know that x = sqrt(r² / 1 + m²), because
+    //  r² = x² + y²    -> Pitagoras
+    //  on the other side
+    //  m = y2 - y1 / x2 - x1
+    //  since our line cross the origin, we can replace x1 and y1 with 0, so
+    //  m = y / x
+    //  -> y = m * x
+    //  replacing in out pitagoras function
+    //  r² = x² + m²x²
+    //  -> x² * (1 + m²) = r²
+    //  -> x² = r² / (1 + m²)
+    //  -> x = sqrt(r² / (1 + m²))
+    let x = Math.sqrt(radius * radius / (1 + m * m))
+    x += center.x
+    if (x > 127) x = 127
+    if (x < 2.8) x = 2.8
+    let y = m * x
+    y += center.y
+    if (y > 129) y = 129
+    if (y < 4.2) y = 4.2
+    return { x, y }
   }
   render () {
     return html`
@@ -136,7 +193,9 @@ export default class WebCompass extends LitElement {
             height: 100%;
             width: 100%;
           }
-      
+        :host svg {
+          overflow: visible;
+        }
           :host .compass__pointer {
           height: 100%;
           width: 100%;
@@ -151,11 +210,12 @@ export default class WebCompass extends LitElement {
         <polyline points="63,121  67,121  65,119" fill="white" />
         <polyline points="9,63  9,67  11,65" fill="white" />
 
-        <text x="65" y="4.2" font-size="5" text-anchor="middle" fill="white">S</text>
-        <text x="127" y="67" font-size="5" text-anchor="middle" fill="white">W</text>
-        <text x="65" y="129" font-size="5" text-anchor="middle" fill="white">N</text>
-        <text x="2.8" y="67" font-size="5" text-anchor="middle" fill="white">E</text>
+        <text x="65" y="4.2" font-size="5" text-anchor="middle" fill="white">W</text>
+        <text x="127" y="67" font-size="5" text-anchor="middle" fill="white">N</text>
+        <text x="65" y="129" font-size="5" text-anchor="middle" fill="white">E</text>
+        <text x="2.8" y="67" font-size="5" text-anchor="middle" fill="white">S</text>
 
+        ${this.targetSvg}
       </svg>
 
     </div>
