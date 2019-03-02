@@ -1,4 +1,4 @@
-/* global screen */
+/* global screen nativeToast */
 import { popup, getBrowserOrientation } from './lib/utils.js'
 import './components/web-compass.js'
 import './components/app-shell.js'
@@ -197,7 +197,15 @@ import './components/web-map.js'
           map.lat = latitude
           container.innerHTML = ''
           container.appendChild(map)
-        }, console.error, { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 })
+        }, (e) => {
+          nativeToast({
+            message: `Error: ${e.message}`,
+            position: 'north',
+            // Self destroy in 5 seconds
+            timeout: 5000,
+            type: 'error'
+          })
+        }, { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 })
       }
     } else {
       container.innerHTML = ''

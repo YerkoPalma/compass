@@ -1,4 +1,4 @@
-/* global customElements turf */
+/* global customElements turf nativeToast */
 import { LitElement, html } from 'https://unpkg.com/@polymer/lit-element?module'
 import { getBrowserOrientation, popup, decimalToSexagesimal } from '../lib/utils.js'
 
@@ -104,7 +104,15 @@ export default class WebCompass extends LitElement {
         const { x, y } = this.getTargetPosition(bearing, radius, center)
         this.targetSvg = html`<svg x="${x}" y="${y}" version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 12 17" width="12" height="17"><defs><path d="M0.64 6.44C0.64 11.28 6 16 6 16C6 16 11.36 11.19 11.36 6.44C11.36 3.44 8.97 1 6 1C3.03 1 0.64 3.44 0.64 6.44Z" id="a3B3BcdNT"/></defs><g><g><use xlink:href="#a3B3BcdNT" opacity="1" fill="#edd80b" fill-opacity="1"/><g><use xlink:href="#a3B3BcdNT" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1" stroke-opacity="0"/></g></g></g></svg>`
       }
-    }, err => console.error(err), {
+    }, (e) => {
+      nativeToast({
+        message: `Error: ${e.message}`,
+        position: 'north',
+        // Self destroy in 5 seconds
+        timeout: 5000,
+        type: 'error'
+      })
+    }, {
       enableHighAccuracy: true,
       timeout: 10000,
       maximumAge: 0
