@@ -191,7 +191,7 @@ import './components/web-map.js'
         map.lng = longitude
         map.lat = latitude
         container.appendChild(map)
-      })
+      }, console.log, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
     } else {
       container.innerHTML = ''
       const compass = document.createElement('web-compass')

@@ -25,6 +25,17 @@ export default class WebMap extends LitElement {
       zoom: 13,
       center: [ this.lng, this.lat ]
     })
+    map.on('load', function (e) {
+      if (window.marker) window.marker.addTo(map)
+    })
+    map.on('click', function (e) {
+      if (window.marker) window.marker.remove()
+      window.marker = new mapboxgl.Marker({
+        draggable: true
+      })
+        .setLngLat(e.lngLat)
+        .addTo(map)
+    })
   }
   render () {
     return html`
